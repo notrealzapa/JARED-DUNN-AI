@@ -1,18 +1,15 @@
 import os
-from langchain.llms import OpenAI
-from langchain.embeddings import OpenAIEmbeddings
+
 import streamlit as st
-
-from langchain.document_loaders import PyPDFLoader
-from langchain.vectorstores import Chroma
-
 from langchain.agents.agent_toolkits import (
     create_vectorstore_agent,
     VectorStoreToolkit,
     VectorStoreInfo
 )
-
-os.environ['OPENAI_API_KEY'] = 'input api key here'
+from langchain.document_loaders import PyPDFLoader
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.llms import OpenAI
+from langchain.vectorstores import Chroma
 
 llm = OpenAI(temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
@@ -40,5 +37,5 @@ if prompt:
     response = agent_executor.run(prompt)
     st.write(response)
     with st.expander('Document Similarity Search'):
-        search = store.similarity_search_with_score(prompt) 
-        st.write(search[0][0].page_content) 
+        search = store.similarity_search_with_score(prompt)
+        st.write(search[0][0].page_content)

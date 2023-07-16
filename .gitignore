@@ -1,0 +1,6 @@
+.idea
+venv
+bin
+pyvenv.cfg
+.chroma
+Pipfile
